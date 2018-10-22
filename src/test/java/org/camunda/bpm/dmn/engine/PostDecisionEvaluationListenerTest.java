@@ -6,10 +6,10 @@ import org.camunda.bpm.dmn.engine.delegate.DmnEvaluatedDecisionRule;
 import org.camunda.bpm.dmn.engine.impl.DmnDecisionTableImpl;
 import org.camunda.bpm.dmn.engine.impl.DmnDecisionTableRuleImpl;
 import org.junit.Test;
+import org.mockito.internal.util.reflection.FieldSetter;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Map;
+import java.lang.reflect.Field;
+import java.util.*;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -103,5 +103,25 @@ public class PostDecisionEvaluationListenerTest {
         listener.notify(event);
         double coverage = listener.getCoverage();
         assertEquals(1.0, coverage, 0);
+    }
+
+    @Test
+    public void getCoveredRulesNoData() {
+        List<String> coveredRules = listener.getMatchedRules();
+        assertEquals(0, coveredRules.size());
+    }
+
+    @Test
+    public void getCoveredRulesData() throws NoSuchFieldException {
+        final PostDecisionEvaluationListener mockListener = new PostDecisionEvaluationListener();
+        final Field decisionTableField =
+                mockListener.getClass().getDeclaredField("decisionTable");
+        Map<String, Boolean> decisionTable = new HashMap<>();
+        decisionTable.put("matched", true);
+        decisionTable.put("unmatched", false);
+        FieldSetter.setField(mockListener, decisionTableField, decisionTable);
+        List<String> coveredRules = mockListener.getMatchedRules();
+        assertEquals(1, coveredRules.size());
+        assertTrue(coveredRules.contains("matched"));
     }
 }

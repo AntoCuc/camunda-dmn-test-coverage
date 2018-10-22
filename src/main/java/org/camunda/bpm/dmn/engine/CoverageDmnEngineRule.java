@@ -6,6 +6,7 @@ import org.junit.runners.model.Statement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.List;
 import java.util.Map;
 
 
@@ -72,6 +73,13 @@ public final class CoverageDmnEngineRule extends DmnEngineRule {
      */
     public double getCoverage() {
         return this.listener.getCoverage();
+    }
+
+    /**
+     * @return delegates the retrieval of decision rules.
+     */
+    public List<String> getMatchedRules() {
+        return this.listener.getMatchedRules();
     }
 
     /**

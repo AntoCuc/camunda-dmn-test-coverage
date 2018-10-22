@@ -10,6 +10,7 @@ import org.camunda.bpm.dmn.engine.impl.DmnDecisionTableRuleImpl;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * Post decision listener in charge of calculating the test-level coverage
@@ -50,23 +51,35 @@ public final class PostDecisionEvaluationListener
     /**
      * @return the decision table
      */
-    public Map<String, Boolean> getDecisionTable() {
+    Map<String, Boolean> getDecisionTable() {
         return this.decisionTable;
     }
 
     /**
      * @return the decision coverage
      */
-    public double getCoverage() {
+    double getCoverage() {
         final double allRules = this.decisionTable.size();
 
         final double coveredRules = this.decisionTable
                 .entrySet()
                 .stream()
-                .filter(map -> map.getValue())
+                .filter(Map.Entry::getValue)
                 .distinct()
                 .count();
 
         return coveredRules / allRules;
+    }
+
+    /**
+     * @return list of matched rule names
+     */
+    List<String> getMatchedRules() {
+        return this.decisionTable
+                .entrySet()
+                .stream()
+                .filter(Map.Entry::getValue)
+                .map(Map.Entry::getKey)
+                .collect(Collectors.toList());
     }
 }

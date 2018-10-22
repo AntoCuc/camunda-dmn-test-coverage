@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import java.io.InputStream;
 
+import static java.util.Collections.singletonList;
 import static org.junit.Assert.assertEquals;
 
 public class SampleUsageTest {
@@ -33,6 +34,7 @@ public class SampleUsageTest {
         assertEquals("work on your status first, as bronze you're not going to get anything", result.getSingleResult().get("reason"));
 
         assertEquals(0.25, dmnEngineRule.getCoverage(), 0.0);
+        assertEquals(singletonList("rule1"), dmnEngineRule.getMatchedRules());
     }
 
     @Test
@@ -52,6 +54,7 @@ public class SampleUsageTest {
         assertEquals("you little fish will get what you want", result.getSingleResult().get("reason"));
 
         assertEquals(0.25, dmnEngineRule.getCoverage(), 0.0);
+        assertEquals(singletonList("rule2"), dmnEngineRule.getMatchedRules());
     }
 
     @Test
@@ -71,6 +74,7 @@ public class SampleUsageTest {
         assertEquals("you took too much man, you took too much!", result.getSingleResult().get("reason"));
 
         assertEquals(0.25, dmnEngineRule.getCoverage(), 0.0);
+        assertEquals(singletonList("rule3"), dmnEngineRule.getMatchedRules());
     }
 
     @Test
@@ -90,5 +94,6 @@ public class SampleUsageTest {
         assertEquals("you get anything you want", result.getSingleResult().get("reason"));
 
         assertEquals(0.25, dmnEngineRule.getCoverage(), 0.0);
+        assertEquals(singletonList("rule4"), dmnEngineRule.getMatchedRules());
     }
 }
