@@ -9,6 +9,9 @@ matching statistics to be asserted via standard JUnit.
 It aims to have a concise API with a shallow learning curve that operates in conjunction with the well established JUnit
 testing framework.
 
+Below an example of a successful test run, a mis-matched rule and a coverage assertion error. Notice the
+"Execution summary" table logged to better understand which rules have been executed as part of the evaluation.
+
 ![](header.png)
 
 ## Installation
