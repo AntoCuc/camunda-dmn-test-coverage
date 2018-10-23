@@ -1,0 +1,23 @@
+<!--
+  ~ Software subject to the MIT License.
+  ~ For more information please see the LICENSE.md file.
+  ~
+  ~ Copyright (c) 2018 Antonino Cucchiara.
+  -->
+
+<project xmlns="http://maven.apache.org/DECORATION/1.8.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/DECORATION/1.8.0 http://maven.apache.org/xsd/decoration-1.8.0.xsd"
+         name="Camunda DMN test coverage">
+    <publishDate position="right"/>
+    <version position="right"/>
+    <body>
+        <menu ref="parent"/>
+        <menu ref="modules"/>
+        <menu ref="reports"/>
+    </body>
+    <skin>
+        <groupId>org.apache.maven.skins</groupId>
+        <artifactId>maven-fluido-skin</artifactId>
+        <version>1.5</version>
+    </skin>
+</project>

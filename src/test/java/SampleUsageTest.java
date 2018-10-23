@@ -1,3 +1,10 @@
+/*
+ * Software subject to the MIT License.
+ * For more information please see the LICENSE.md file.
+ *
+ * Copyright (c) 2018 Antonino Cucchiara.
+ */
+
 import org.camunda.bpm.dmn.engine.CoverageDmnEngineRule;
 import org.camunda.bpm.dmn.engine.DmnDecision;
 import org.camunda.bpm.dmn.engine.DmnDecisionResult;

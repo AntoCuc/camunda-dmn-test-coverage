@@ -1,4 +1,11 @@
-﻿        <!DOCTYPE module PUBLIC
+﻿<!--
+  ~ Software subject to the MIT License.
+  ~ For more information please see the LICENSE.md file.
+  ~
+  ~ Copyright (c) 2018 Antonino Cucchiara.
+  -->
+
+<!DOCTYPE module PUBLIC
                 "-//Puppy Crawl//DTD Check Configuration 1.3//EN"
                 "http://www.puppycrawl.com/dtds/configuration_1_3.dtd">
 

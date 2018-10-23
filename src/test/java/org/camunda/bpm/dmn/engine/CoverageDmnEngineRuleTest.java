@@ -1,3 +1,10 @@
+/*
+ * Software subject to the MIT License.
+ * For more information please see the LICENSE.md file.
+ *
+ * Copyright (c) 2018 Antonino Cucchiara.
+ */
+
 package org.camunda.bpm.dmn.engine;
 
 import org.junit.Test;
