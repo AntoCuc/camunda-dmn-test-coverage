@@ -92,7 +92,7 @@ How to contribute:
 ## Thanks to
 
 * [Camunda](https://camunda.com)
-* [JUnit] (https://junit.org/junit4/)
+* [JUnit](https://junit.org/junit4/)
 
 ## References
 
