@@ -14,6 +14,7 @@
     <groupId>org.camunda.bpm.extension</groupId>
     <artifactId>camunda-dmn-test-coverage</artifactId>
     <version>0.1</version>
+    <url>https://camunda-dmn-test-coverage.github.io</url>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -108,6 +109,36 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>3.3</version>
+                <executions>
+                    <execution>
+                        <id>default-site</id>
+                        <phase>site</phase>
+                        <goals>
+                            <goal>site</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.7.9</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>2.17</version>
+                <configuration>
+                    <configLocation>src/test/resources/checkstyle-rules.xml</configLocation>
+                </configuration>
+            </plugin>
+        </plugins>
+    </reporting>
 </project>
