@@ -5,5 +5,7 @@ env:
  matrix:
   secure: hL6aDSvCiS2qF85q1HDltPsMd+jozrPoUu8WMlg8GEp1v9VWwNZWC2C2vWehECMbBubOnHiJul/PiabcFBV8wFBKt55AcfUBmMJjNy6pHjqyKW7HKjhAnO2o/UqJcOkoJG/5ZzlTYijwQia6cn$
 sudo: false
+before_script:
+  - chmod +x update-site.sh
 script: mvn clean install site
 after_success: ./update-site.sh
