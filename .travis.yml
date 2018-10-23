@@ -1,5 +1,9 @@
 language: java
 jdk:
   - openjdk8
+env:
+ matrix:
+  secure: hL6aDSvCiS2qF85q1HDltPsMd+jozrPoUu8WMlg8GEp1v9VWwNZWC2C2vWehECMbBubOnHiJul/PiabcFBV8wFBKt55AcfUBmMJjNy6pHjqyKW7HKjhAnO2o/UqJcOkoJG/5ZzlTYijwQia6cn$
 sudo: false
-script: mvn clean install
+script: mvn clean install site
+after_success: ./update-site.sh

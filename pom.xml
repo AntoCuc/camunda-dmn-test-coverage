@@ -14,7 +14,7 @@
     <groupId>org.camunda.bpm.extension</groupId>
     <artifactId>camunda-dmn-test-coverage</artifactId>
     <version>0.1</version>
-    <url>https://camunda-dmn-test-coverage.github.io</url>
+    <url>https://antocuc.github.io/camunda-dmn-test-coverage/</url>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
