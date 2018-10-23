@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AssertCoverage.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">camunda-dmn-test-coverage</a> &gt; <a href="index.source.html" class="el_package">org.junit</a> &gt; <span class="el_source">AssertCoverage.java</span></div><h1>AssertCoverage.java</h1><pre class="source lang-java linenums">/*
+ * Software subject to the MIT License.
+ * For more information please see the LICENSE.md file.
+ *
+ * Copyright (c) 2018 Antonino Cucchiara.
+ */
+
+package org.junit;
+
+import java.util.List;
+
+import static java.util.Collections.singletonList;
+import static org.junit.Assert.assertEquals;
+
+/**
+ * A set of assertion methods useful for writing coverage tests.
+ */
+public final class AssertCoverage {
+
+    /**
+     * Utility class.
+     */
+<span class="fc" id="L23">    private AssertCoverage() {</span>
+<span class="fc" id="L24">    }</span>
+
+    /**
+     * Coverage assertion failed.
+     */
+    public static final String COVERAGE_ASSERTION_FAILED =
+            &quot;Coverage assertion failed&quot;;
+    /**
+     * Single rule failure message.
+     */
+    public static final String RULE_MATCHING_FAILED = &quot;Rule matching failed&quot;;
+
+    /**
+     * Rules failure message.
+     */
+    public static final String RULES_MATCHING_FAILED = &quot;Rules matching failed&quot;;
+
+    /**
+     * Asserts an exact coverage has been reached.
+     * @param expectedCoverage of the rules
+     * @param actualCoverage of the rules
+     */
+    public static void assertExactCoverage(
+            final double expectedCoverage,
+            final double actualCoverage) {
+<span class="fc" id="L49">        assertEquals(</span>
+                COVERAGE_ASSERTION_FAILED,
+                expectedCoverage,
+                actualCoverage,
+                0.0
+        );
+<span class="fc" id="L55">    }</span>
+
+    /**
+     * Asserts a rules has been matched.
+     * @param rule to be tested
+     * @param actualRulesMatched by the decision
+     */
+    public static void assertRuleMatched(
+            final String rule,
+            final List&lt;String&gt; actualRulesMatched
+    ) {
+<span class="fc" id="L66">        assertEquals(</span>
+                RULE_MATCHING_FAILED,
+<span class="fc" id="L68">                singletonList(rule),</span>
+                actualRulesMatched
+        );
+<span class="fc" id="L71">    }</span>
+
+    /**
+     * Asserts all rules have been matched.
+     * @param expectedRulesMatched to be tested
+     * @param actualRulesMatched by the decision
+     */
+    public static void assertRulesMatched(
+            final List&lt;String&gt; expectedRulesMatched,
+            final List&lt;String&gt; actualRulesMatched
+    ) {
+<span class="fc" id="L82">        assertEquals(</span>
+                RULES_MATCHING_FAILED,
+                expectedRulesMatched,
+                actualRulesMatched
+        );
+<span class="fc" id="L87">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>
