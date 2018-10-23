@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PostDecisionEvaluationListener.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">camunda-dmn-test-coverage</a> &gt; <a href="index.source.html" class="el_package">org.camunda.bpm.dmn.engine</a> &gt; <span class="el_source">PostDecisionEvaluationListener.java</span></div><h1>PostDecisionEvaluationListener.java</h1><pre class="source lang-java linenums">/*
+ * Software subject to the MIT License.
+ * For more information please see the LICENSE.md file.
+ *
+ * Copyright (c) 2018 Antonino Cucchiara.
+ */
+
+package org.camunda.bpm.dmn.engine;
+
+import org.camunda.bpm.dmn.engine.delegate.DmnDecisionEvaluationEvent;
+import org.camunda.bpm.dmn.engine.delegate.DmnDecisionEvaluationListener;
+import org.camunda.bpm.dmn.engine.delegate.DmnDecisionTableEvaluationEvent;
+import org.camunda.bpm.dmn.engine.delegate.DmnEvaluatedDecisionRule;
+import org.camunda.bpm.dmn.engine.impl.DmnDecisionTableImpl;
+import org.camunda.bpm.dmn.engine.impl.DmnDecisionTableRuleImpl;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+/**
+ * Post decision listener in charge of calculating the test-level coverage
+ * of decision rules.
+ */
+<span class="fc" id="L26">public final class PostDecisionEvaluationListener</span>
+        implements DmnDecisionEvaluationListener {
+
+    /**
+     * The decision table.
+     */
+<span class="fc" id="L32">    private final Map&lt;String, Boolean&gt; decisionTable = new HashMap&lt;&gt;();</span>
+
+    @Override
+    public void notify(final DmnDecisionEvaluationEvent event) {
+<span class="fc" id="L36">        final DmnDecisionTableEvaluationEvent decisionResult =</span>
+<span class="fc" id="L37">                (DmnDecisionTableEvaluationEvent) event.getDecisionResult();</span>
+<span class="fc" id="L38">        final DmnDecision dmnDecision = decisionResult.getDecision();</span>
+<span class="fc" id="L39">        final DmnDecisionTableImpl decisionLogic =</span>
+<span class="fc" id="L40">                (DmnDecisionTableImpl) dmnDecision.getDecisionLogic();</span>
+
+<span class="fc" id="L42">        final List&lt;DmnDecisionTableRuleImpl&gt; rules = decisionLogic.getRules();</span>
+
+<span class="fc bfc" id="L44" title="All 2 branches covered.">        for (DmnDecisionTableRuleImpl rule : rules) {</span>
+<span class="fc" id="L45">            final String ruleId = rule.getId();</span>
+<span class="fc" id="L46">            this.decisionTable.put(ruleId, false);</span>
+<span class="fc" id="L47">        }</span>
+
+<span class="fc" id="L49">        final List&lt;DmnEvaluatedDecisionRule&gt; matchingRules =</span>
+<span class="fc" id="L50">                decisionResult.getMatchingRules();</span>
+
+<span class="fc bfc" id="L52" title="All 2 branches covered.">        for (DmnEvaluatedDecisionRule matchingRule : matchingRules) {</span>
+<span class="fc" id="L53">            final String evaluatedDecisionRuleId = matchingRule.getId();</span>
+<span class="fc" id="L54">            this.decisionTable.put(evaluatedDecisionRuleId, true);</span>
+<span class="fc" id="L55">        }</span>
+<span class="fc" id="L56">    }</span>
+
+    /**
+     * @return the decision table
+     */
+    Map&lt;String, Boolean&gt; getDecisionTable() {
+<span class="fc" id="L62">        return this.decisionTable;</span>
+    }
+
+    /**
+     * @return the decision coverage
+     */
+    double getCoverage() {
+<span class="fc" id="L69">        final double allRules = this.decisionTable.size();</span>
+
+<span class="fc" id="L71">        final double coveredRules = this.decisionTable</span>
+<span class="fc" id="L72">                .entrySet()</span>
+<span class="fc" id="L73">                .stream()</span>
+<span class="fc" id="L74">                .filter(Map.Entry::getValue)</span>
+<span class="fc" id="L75">                .distinct()</span>
+<span class="fc" id="L76">                .count();</span>
+
+<span class="fc" id="L78">        return coveredRules / allRules;</span>
+    }
+
+    /**
+     * @return list of matched rule names
+     */
+    List&lt;String&gt; getMatchedRules() {
+<span class="fc" id="L85">        return this.decisionTable</span>
+<span class="fc" id="L86">                .entrySet()</span>
+<span class="fc" id="L87">                .stream()</span>
+<span class="fc" id="L88">                .filter(Map.Entry::getValue)</span>
+<span class="fc" id="L89">                .map(Map.Entry::getKey)</span>
+<span class="fc" id="L90">                .collect(Collectors.toList());</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

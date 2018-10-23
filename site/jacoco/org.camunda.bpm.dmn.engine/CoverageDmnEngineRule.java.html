@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CoverageDmnEngineRule.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">camunda-dmn-test-coverage</a> &gt; <a href="index.source.html" class="el_package">org.camunda.bpm.dmn.engine</a> &gt; <span class="el_source">CoverageDmnEngineRule.java</span></div><h1>CoverageDmnEngineRule.java</h1><pre class="source lang-java linenums">/*
+ * Software subject to the MIT License.
+ * For more information please see the LICENSE.md file.
+ *
+ * Copyright (c) 2018 Antonino Cucchiara.
+ */
+
+package org.camunda.bpm.dmn.engine;
+
+import org.camunda.bpm.dmn.engine.test.DmnEngineRule;
+import org.junit.runner.Description;
+import org.junit.runners.model.Statement;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.List;
+import java.util.Map;
+
+
+/**
+ * Dmn Engine JUnit TestWatcher Rule extended with decision coverage.
+ */
+public final class CoverageDmnEngineRule extends DmnEngineRule {
+
+    /**
+     * Bridged logger.
+     */
+<span class="fc" id="L28">    private static Logger logger =</span>
+<span class="fc" id="L29">            LoggerFactory.getLogger(CoverageDmnEngineRule.class);</span>
+
+    /**
+     * Cross-platform line separator.
+     */
+<span class="fc" id="L34">    private static String lineSeparator = System.lineSeparator();</span>
+
+    /**
+     * Decision listener calculating coverage.
+     */
+    private PostDecisionEvaluationListener listener;
+
+    /**
+     * Creates a DMNEngineRule extended to account for decisions coverage.
+     */
+<span class="fc" id="L44">    public CoverageDmnEngineRule() {</span>
+<span class="fc" id="L45">        this.listener = new PostDecisionEvaluationListener();</span>
+<span class="fc" id="L46">    }</span>
+
+    @Override
+    public Statement apply(
+            final Statement base,
+            final Description description
+    ) {
+<span class="fc" id="L53">        super.dmnEngineConfiguration</span>
+<span class="fc" id="L54">                .getCustomPostDecisionEvaluationListeners()</span>
+<span class="fc" id="L55">                .add(listener);</span>
+<span class="fc" id="L56">        return super.apply(base, description);</span>
+    }
+
+    @Override
+    protected void failed(final Throwable e, final Description description) {
+
+<span class="fc" id="L62">        final StringBuilder errorLog = new StringBuilder();</span>
+<span class="fc" id="L63">        errorLog.append(lineSeparator + &quot;Execution summary&quot;);</span>
+<span class="fc" id="L64">        errorLog.append(lineSeparator + column(&quot;Rule&quot;) + column(&quot;Executed&quot;));</span>
+
+<span class="fc" id="L66">        final Map&lt;String, Boolean&gt; decisionTable =</span>
+<span class="fc" id="L67">                this.listener.getDecisionTable();</span>
+<span class="fc bfc" id="L68" title="All 2 branches covered.">        for (Map.Entry&lt;String, Boolean&gt; entry : decisionTable.entrySet()) {</span>
+<span class="fc" id="L69">            final String formattedKey = column(entry.getKey());</span>
+<span class="fc" id="L70">            final String formattedValue = column(entry.getValue());</span>
+<span class="fc" id="L71">            errorLog.append(lineSeparator + formattedKey + formattedValue);</span>
+<span class="fc" id="L72">        }</span>
+
+<span class="fc" id="L74">        logger.error(errorLog.toString());</span>
+<span class="fc" id="L75">        super.failed(e, description);</span>
+<span class="fc" id="L76">    }</span>
+
+    /**
+     * @return delegates the retrieval of decision rules coverage.
+     */
+    public double getCoverage() {
+<span class="fc" id="L82">        return this.listener.getCoverage();</span>
+    }
+
+    /**
+     * @return delegates the retrieval of decision rules.
+     */
+    public List&lt;String&gt; getMatchedRules() {
+<span class="fc" id="L89">        return this.listener.getMatchedRules();</span>
+    }
+
+    /**
+     * @return engine configuration
+     */
+    DmnEngineConfiguration getDmnEngineConfiguration() {
+<span class="fc" id="L96">        return this.dmnEngineConfiguration;</span>
+    }
+
+    /**
+     * @param testListener used for injections.
+     */
+    void setListener(final PostDecisionEvaluationListener testListener) {
+<span class="fc" id="L103">        this.listener = testListener;</span>
+<span class="fc" id="L104">    }</span>
+
+    /**
+     * @param data to be formatted
+     * @return a 10 spaces-padded column of data
+     */
+    String column(final Object data) {
+<span class="fc" id="L111">        String sanitisedData = &quot;&quot;;</span>
+<span class="fc bfc" id="L112" title="All 2 branches covered.">        if (data != null) {</span>
+<span class="fc" id="L113">            sanitisedData = data.toString();</span>
+        }
+<span class="fc" id="L115">        return String.format(&quot;%1$-10s&quot;, sanitisedData);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.7.9.201702052155</span></div></body></html>

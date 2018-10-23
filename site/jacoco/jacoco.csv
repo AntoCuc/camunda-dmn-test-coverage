@@ -1,0 +1,3 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+camunda-dmn-test-coverage,org.camunda.bpm.dmn.engine,PostDecisionEvaluationListener,0,102,0,4,0,34,0,7,0,5
+camunda-dmn-test-coverage,org.camunda.bpm.dmn.engine,CoverageDmnEngineRule,0,137,0,4,0,32,0,11,0,9
