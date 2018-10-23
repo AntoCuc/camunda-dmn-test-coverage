@@ -2,7 +2,7 @@
 
 if [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_BRANCH" == "master" ]; then
 
-    echo -e "Updating site..."
+    echo -e "Updating website..."
 
     cd $HOME
     git config --global user.email "travis@travis-ci.org"
