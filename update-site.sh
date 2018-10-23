@@ -10,7 +10,7 @@ if [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_BRANCH" == "master" ]; th
 
     cd gh-pages
     git rm -rf ./*
-    cp -Rf $TRAVIS_BUILD_DIR/target/site .
+    cp -Rf $TRAVIS_BUILD_DIR/target/site/* .
     git add -f .
     git commit -m "Updated site for build $TRAVIS_BUILD_NUMBER"
     git push -fq origin gh-pages
