@@ -11,6 +11,9 @@
     <publishDate position="right"/>
     <version position="right"/>
     <body>
+        <breadcrumbs>
+            <item name="Home" href="https://antocuc.github.io/camunda-dmn-test-coverage/"/>
+        </breadcrumbs>
         <menu ref="parent"/>
         <menu ref="modules"/>
         <menu ref="reports"/>
