@@ -46,6 +46,10 @@ And finally, using for assertions:
 
 ```java
 
+...
+import static org.junit.Assert.assertEquals;
+...
+
 //Asserts the rules coverage
 assertEquals(0.25, dmnEngineRule.getCoverage(), 0.0);
 
@@ -55,6 +59,22 @@ assertEquals(singletonList("rule1"), dmnEngineRule.getMatchedRules());
 ```
 
 It is important to note that the rest of your Unit Tests are not impacted and require no code changes.
+
+There are also some more descriptive assertions shipped with this library. Here is how to use them:
+
+```java
+
+...
+import static org.junit.AssertCoverage.assertExactCoverage;
+import static org.junit.AssertCoverage.assertRuleMatched;
+...
+
+//Asserts the rules coverage is exactly 25%
+assertExactCoverage(0.25, dmnEngineRule.getCoverage());
+//Asserts the only rule matched (triggered) is "rule4"
+assertRuleMatched("rule4", dmnEngineRule.getMatchedRules());
+
+```
 
 _For more examples and usage, please refer to the `SampleUsageTest.java` file in the repository._
 

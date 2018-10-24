@@ -18,6 +18,8 @@ import java.io.InputStream;
 
 import static java.util.Collections.singletonList;
 import static org.junit.Assert.assertEquals;
+import static org.junit.AssertCoverage.assertExactCoverage;
+import static org.junit.AssertCoverage.assertRuleMatched;
 
 public class SampleUsageTest {
 
@@ -102,5 +104,25 @@ public class SampleUsageTest {
 
         assertEquals(0.25, dmnEngineRule.getCoverage(), 0.0);
         assertEquals(singletonList("rule4"), dmnEngineRule.getMatchedRules());
+    }
+
+    @Test
+    public void testGoldDescriptive() {
+        DmnEngine dmnEngine = dmnEngineRule.getDmnEngine();
+        InputStream inputStream = SampleUsageTest.class.getResourceAsStream("Example.dmn");
+
+        VariableMap variables = Variables.createVariables();
+        variables.put("status", "gold");
+        variables.put("sum", 1000000);
+
+        DmnDecision decision = dmnEngine.parseDecision("orderDecision", inputStream);
+        DmnDecisionResult result = dmnEngine.evaluateDecision(decision, variables);
+
+        assertEquals(1, result.getResultList().size());
+        assertEquals("ok", result.getSingleResult().get("result"));
+        assertEquals("you get anything you want", result.getSingleResult().get("reason"));
+
+        assertExactCoverage(0.25, dmnEngineRule.getCoverage());
+        assertRuleMatched("rule4", dmnEngineRule.getMatchedRules());
     }
 }
