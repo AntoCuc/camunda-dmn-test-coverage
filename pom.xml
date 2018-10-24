@@ -11,10 +11,53 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <name>Camunda Dmn test coverage</name>
     <groupId>org.camunda.bpm.extension</groupId>
     <artifactId>camunda-dmn-test-coverage</artifactId>
     <version>0.1</version>
     <url>https://antocuc.github.io/camunda-dmn-test-coverage/</url>
+    <description>
+        The Camunda Dmn Test Coverage project extends on the standard JUnit-based DmnEngineRule allowing for coverage
+        and rule matching statistics to be asserted via standard JUnit.
+        It aims to have a concise API with a shallow learning curve that operates in conjunction with the well
+        established JUnit testing framework.
+    </description>
+    <inceptionYear>2018</inceptionYear>
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>https://github.com/AntoCuc/camunda-dmn-test-coverage/blob/master/LICENSE.md</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <id>AntoCuc</id>
+            <name>Antonio Cucchiara</name>
+            <email>antonio_cuc@yahoo.co.uk</email>
+        </developer>
+    </developers>
+    <scm>
+        <connection>scm:git:git://github.com/AntoCuc/camunda-dmn-test-coverage.git</connection>
+        <developerConnection>scm:git:git://github.com/AntoCuc/camunda-dmn-test-coverage.git</developerConnection>
+        <url>http://github.com/AntoCuc/camunda-dmn-test-coverage/tree/master</url>
+    </scm>
+    <issueManagement>
+        <system>github</system>
+        <url>https://github.com/AntoCuc/camunda-dmn-test-coverage/issues</url>
+    </issueManagement>
+    <ciManagement>
+        <system>Travis</system>
+        <url>https://travis-ci.org/</url>
+        <notifiers>
+            <notifier>
+                <type>Email</type>
+                <address>antonio_cuc@yahoo.co.uk</address>
+                <sendOnError>true</sendOnError>
+                <sendOnFailure>true</sendOnFailure>
+            </notifier>
+        </notifiers>
+    </ciManagement>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
