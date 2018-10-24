@@ -19,9 +19,9 @@ under the License.
 -->
 <rss version="0.91">
   <channel>
-    <title>camunda-dmn-test-coverage - Checkstyle report</title>
+    <title>Camunda Dmn test coverage - Checkstyle report</title>
     <link>https://antocuc.github.io/camunda-dmn-test-coverage/</link>
-    <description>camunda-dmn-test-coverage - Checkstyle report</description>
+    <description>Camunda Dmn test coverage - Checkstyle report</description>
     <language>en-us</language>
     <copyright>&#169;2018</copyright>
     <item>
