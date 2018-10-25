@@ -31,7 +31,7 @@ public final class CoverageDmnEngineRule extends DmnEngineRule {
     /**
      * Cross-platform line separator.
      */
-    private static String lineSeparator = System.lineSeparator();
+    private static final String LINE_SEPARATOR = System.lineSeparator();
 
     /**
      * Decision listener calculating coverage.
@@ -60,15 +60,15 @@ public final class CoverageDmnEngineRule extends DmnEngineRule {
     protected void failed(final Throwable e, final Description description) {
 
         final StringBuilder errorLog = new StringBuilder();
-        errorLog.append(lineSeparator + "Execution summary");
-        errorLog.append(lineSeparator + column("Rule") + column("Executed"));
+        errorLog.append(LINE_SEPARATOR + "Execution summary");
+        errorLog.append(LINE_SEPARATOR + column("Rule") + column("Executed"));
 
         final Map<String, Boolean> decisionTable =
                 this.listener.getDecisionTable();
         for (Map.Entry<String, Boolean> entry : decisionTable.entrySet()) {
             final String formattedKey = column(entry.getKey());
             final String formattedValue = column(entry.getValue());
-            errorLog.append(lineSeparator + formattedKey + formattedValue);
+            errorLog.append(LINE_SEPARATOR + formattedKey + formattedValue);
         }
 
         LOGGER.error(errorLog.toString());
