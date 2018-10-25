@@ -17,8 +17,8 @@
     <version>0.1</version>
     <url>https://antocuc.github.io/camunda-dmn-test-coverage/</url>
     <description>
-        The Camunda Dmn Test Coverage project extends on the standard JUnit-based DmnEngineRule allowing for coverage
-        and rule matching statistics to be asserted via standard JUnit.
+        The Camunda Dmn Test Coverage project extends on the standard JUnit-based DmnEngineRule shipped with the Camunda
+        DMN Engine exposing for coverage and rule matching statistics to be asserted via standard JUnit.
         It aims to have a concise API with a shallow learning curve that operates in conjunction with the well
         established JUnit testing framework.
     </description>
