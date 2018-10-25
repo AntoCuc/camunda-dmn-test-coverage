@@ -25,7 +25,7 @@ public final class CoverageDmnEngineRule extends DmnEngineRule {
     /**
      * Bridged logger.
      */
-    private static Logger logger =
+    private static final Logger LOGGER =
             LoggerFactory.getLogger(CoverageDmnEngineRule.class);
 
     /**
@@ -71,7 +71,7 @@ public final class CoverageDmnEngineRule extends DmnEngineRule {
             errorLog.append(lineSeparator + formattedKey + formattedValue);
         }
 
-        logger.error(errorLog.toString());
+        LOGGER.error(errorLog.toString());
         super.failed(e, description);
     }
 
