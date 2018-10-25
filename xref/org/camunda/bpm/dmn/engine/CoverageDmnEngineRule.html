@@ -33,13 +33,13 @@
 <a class="jxr_linenumber" name="L25" href="#L25">25</a>      <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L26" href="#L26">26</a>  <em class="jxr_javadoccomment">     * Bridged logger.</em>
 <a class="jxr_linenumber" name="L27" href="#L27">27</a>  <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L28" href="#L28">28</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> Logger logger =
+<a class="jxr_linenumber" name="L28" href="#L28">28</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> Logger LOGGER =
 <a class="jxr_linenumber" name="L29" href="#L29">29</a>              LoggerFactory.getLogger(CoverageDmnEngineRule.<strong class="jxr_keyword">class</strong>);
 <a class="jxr_linenumber" name="L30" href="#L30">30</a>  
 <a class="jxr_linenumber" name="L31" href="#L31">31</a>      <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L32" href="#L32">32</a>  <em class="jxr_javadoccomment">     * Cross-platform line separator.</em>
 <a class="jxr_linenumber" name="L33" href="#L33">33</a>  <em class="jxr_javadoccomment">     */</em>
-<a class="jxr_linenumber" name="L34" href="#L34">34</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> String lineSeparator = System.lineSeparator();
+<a class="jxr_linenumber" name="L34" href="#L34">34</a>      <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String LINE_SEPARATOR = System.lineSeparator();
 <a class="jxr_linenumber" name="L35" href="#L35">35</a>  
 <a class="jxr_linenumber" name="L36" href="#L36">36</a>      <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L37" href="#L37">37</a>  <em class="jxr_javadoccomment">     * Decision listener calculating coverage.</em>
@@ -68,18 +68,18 @@
 <a class="jxr_linenumber" name="L60" href="#L60">60</a>      <strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">void</strong> failed(<strong class="jxr_keyword">final</strong> Throwable e, <strong class="jxr_keyword">final</strong> Description description) {
 <a class="jxr_linenumber" name="L61" href="#L61">61</a>  
 <a class="jxr_linenumber" name="L62" href="#L62">62</a>          <strong class="jxr_keyword">final</strong> StringBuilder errorLog = <strong class="jxr_keyword">new</strong> StringBuilder();
-<a class="jxr_linenumber" name="L63" href="#L63">63</a>          errorLog.append(lineSeparator + <span class="jxr_string">"Execution summary"</span>);
-<a class="jxr_linenumber" name="L64" href="#L64">64</a>          errorLog.append(lineSeparator + column(<span class="jxr_string">"Rule"</span>) + column(<span class="jxr_string">"Executed"</span>));
+<a class="jxr_linenumber" name="L63" href="#L63">63</a>          errorLog.append(LINE_SEPARATOR + <span class="jxr_string">"Execution summary"</span>);
+<a class="jxr_linenumber" name="L64" href="#L64">64</a>          errorLog.append(LINE_SEPARATOR + column(<span class="jxr_string">"Rule"</span>) + column(<span class="jxr_string">"Executed"</span>));
 <a class="jxr_linenumber" name="L65" href="#L65">65</a>  
 <a class="jxr_linenumber" name="L66" href="#L66">66</a>          <strong class="jxr_keyword">final</strong> Map&lt;String, Boolean&gt; decisionTable =
 <a class="jxr_linenumber" name="L67" href="#L67">67</a>                  <strong class="jxr_keyword">this</strong>.listener.getDecisionTable();
 <a class="jxr_linenumber" name="L68" href="#L68">68</a>          <strong class="jxr_keyword">for</strong> (Map.Entry&lt;String, Boolean&gt; entry : decisionTable.entrySet()) {
 <a class="jxr_linenumber" name="L69" href="#L69">69</a>              <strong class="jxr_keyword">final</strong> String formattedKey = column(entry.getKey());
 <a class="jxr_linenumber" name="L70" href="#L70">70</a>              <strong class="jxr_keyword">final</strong> String formattedValue = column(entry.getValue());
-<a class="jxr_linenumber" name="L71" href="#L71">71</a>              errorLog.append(lineSeparator + formattedKey + formattedValue);
+<a class="jxr_linenumber" name="L71" href="#L71">71</a>              errorLog.append(LINE_SEPARATOR + formattedKey + formattedValue);
 <a class="jxr_linenumber" name="L72" href="#L72">72</a>          }
 <a class="jxr_linenumber" name="L73" href="#L73">73</a>  
-<a class="jxr_linenumber" name="L74" href="#L74">74</a>          logger.error(errorLog.toString());
+<a class="jxr_linenumber" name="L74" href="#L74">74</a>          LOGGER.error(errorLog.toString());
 <a class="jxr_linenumber" name="L75" href="#L75">75</a>          <strong class="jxr_keyword">super</strong>.failed(e, description);
 <a class="jxr_linenumber" name="L76" href="#L76">76</a>      }
 <a class="jxr_linenumber" name="L77" href="#L77">77</a>  

@@ -25,13 +25,13 @@ public final class CoverageDmnEngineRule extends DmnEngineRule {
     /**
      * Bridged logger.
      */
-<span class="fc" id="L28">    private static Logger logger =</span>
+<span class="fc" id="L28">    private static final Logger LOGGER =</span>
 <span class="fc" id="L29">            LoggerFactory.getLogger(CoverageDmnEngineRule.class);</span>
 
     /**
      * Cross-platform line separator.
      */
-<span class="fc" id="L34">    private static String lineSeparator = System.lineSeparator();</span>
+<span class="fc" id="L34">    private static final String LINE_SEPARATOR = System.lineSeparator();</span>
 
     /**
      * Decision listener calculating coverage.
@@ -60,18 +60,18 @@ public final class CoverageDmnEngineRule extends DmnEngineRule {
     protected void failed(final Throwable e, final Description description) {
 
 <span class="fc" id="L62">        final StringBuilder errorLog = new StringBuilder();</span>
-<span class="fc" id="L63">        errorLog.append(lineSeparator + &quot;Execution summary&quot;);</span>
-<span class="fc" id="L64">        errorLog.append(lineSeparator + column(&quot;Rule&quot;) + column(&quot;Executed&quot;));</span>
+<span class="fc" id="L63">        errorLog.append(LINE_SEPARATOR + &quot;Execution summary&quot;);</span>
+<span class="fc" id="L64">        errorLog.append(LINE_SEPARATOR + column(&quot;Rule&quot;) + column(&quot;Executed&quot;));</span>
 
 <span class="fc" id="L66">        final Map&lt;String, Boolean&gt; decisionTable =</span>
 <span class="fc" id="L67">                this.listener.getDecisionTable();</span>
 <span class="fc bfc" id="L68" title="All 2 branches covered.">        for (Map.Entry&lt;String, Boolean&gt; entry : decisionTable.entrySet()) {</span>
 <span class="fc" id="L69">            final String formattedKey = column(entry.getKey());</span>
 <span class="fc" id="L70">            final String formattedValue = column(entry.getValue());</span>
-<span class="fc" id="L71">            errorLog.append(lineSeparator + formattedKey + formattedValue);</span>
+<span class="fc" id="L71">            errorLog.append(LINE_SEPARATOR + formattedKey + formattedValue);</span>
 <span class="fc" id="L72">        }</span>
 
-<span class="fc" id="L74">        logger.error(errorLog.toString());</span>
+<span class="fc" id="L74">        LOGGER.error(errorLog.toString());</span>
 <span class="fc" id="L75">        super.failed(e, description);</span>
 <span class="fc" id="L76">    }</span>
 
